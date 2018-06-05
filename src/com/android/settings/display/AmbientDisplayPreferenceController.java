@@ -49,6 +49,8 @@ public class AmbientDisplayPreferenceController extends AbstractPreferenceContro
         super.updateState(preference);
         if (mConfig.alwaysOnEnabled(MY_USER_ID)) {
             preference.setSummary(R.string.ambient_display_screen_summary_always_on);
+        } else if (mConfig.alwaysOnChargerEnabled(MY_USER_ID)) {
+            preference.setSummary(R.string.ambient_display_screen_summary_always_on_charger);
         } else if (mConfig.pulseOnNotificationEnabled(MY_USER_ID)) {
             preference.setSummary(R.string.ambient_display_screen_summary_notifications);
         } else if (mConfig.enabled(MY_USER_ID)) {

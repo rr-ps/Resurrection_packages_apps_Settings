@@ -51,12 +51,15 @@ public class AmbientDisplaySettings extends DashboardFragment {
     private static List<AbstractPreferenceController> buildPreferenceControllers(Context context,
             Lifecycle lifecycle, AmbientDisplayConfiguration config,
             MetricsFeatureProvider metricsFeatureProvider,
-            AmbientDisplayAlwaysOnPreferenceController.OnPreferenceChangedCallback aodCallback) {
+            AmbientDisplayAlwaysOnPreferenceController.OnPreferenceChangedCallback aodCallback,
+            AmbientDisplayAlwaysOnChargerPreferenceController.OnPreferenceChangedCallback aodcCallback) {
         final List<AbstractPreferenceController> controllers = new ArrayList<>();
         controllers.add(new AmbientDisplayNotificationsPreferenceController(context, config,
                 metricsFeatureProvider));
         controllers.add(new AmbientDisplayAlwaysOnPreferenceController(context, config,
                 aodCallback));
+        controllers.add(new AmbientDisplayAlwaysOnChargerPreferenceController(context, config,
+                aodcCallback));
         controllers.add(new DoubleTapScreenPreferenceController(context, lifecycle, config,
                 MY_USER_ID, KEY_AMBIENT_DISPLAY_DOUBLE_TAP));
         controllers.add(new PickupGesturePreferenceController(context, lifecycle, config,
@@ -79,7 +82,7 @@ public class AmbientDisplaySettings extends DashboardFragment {
     protected List<AbstractPreferenceController> getPreferenceControllers(Context context) {
         return buildPreferenceControllers(context, getLifecycle(),
                 new AmbientDisplayConfiguration(context), mMetricsFeatureProvider,
-                () -> { updatePreferenceStates(); });
+                () -> { updatePreferenceStates(); }, () -> { updatePreferenceStates(); });
     }
 
     @Override
@@ -103,7 +106,7 @@ public class AmbientDisplaySettings extends DashboardFragment {
                 @Override
                 public List<AbstractPreferenceController> getPreferenceControllers(Context context) {
                     return buildPreferenceControllers(context, null,
-                            new AmbientDisplayConfiguration(context), null, null);
+                            new AmbientDisplayConfiguration(context), null, null, null);
                 }
             };
 }
