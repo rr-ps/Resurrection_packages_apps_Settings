@@ -306,9 +306,9 @@ public class BatteryUtils {
      */
     public boolean isBackgroundRestrictionEnabled(final int targetSdkVersion, final int uid,
             final String packageName) {
-        if (targetSdkVersion >= Build.VERSION_CODES.O) {
-            return true;
-        }
+        //if (targetSdkVersion >= Build.VERSION_CODES.O) {
+        //  return true;
+        //}
         final int mode = mAppOpsManager
                 .checkOpNoThrow(AppOpsManager.OP_RUN_IN_BACKGROUND, uid, packageName);
         return mode == AppOpsManager.MODE_IGNORED || mode == AppOpsManager.MODE_ERRORED;

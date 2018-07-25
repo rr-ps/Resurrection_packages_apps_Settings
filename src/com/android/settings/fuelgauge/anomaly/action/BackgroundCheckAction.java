@@ -44,11 +44,11 @@ public class BackgroundCheckAction extends AnomalyAction {
     @Override
     public void handlePositiveAction(Anomaly anomaly, int contextMetricsKey) {
         super.handlePositiveAction(anomaly, contextMetricsKey);
-        if (anomaly.targetSdkVersion < Build.VERSION_CODES.O) {
+        //if (anomaly.targetSdkVersion < Build.VERSION_CODES.O) {
             mAppOpsManager.setMode(AppOpsManager.OP_RUN_IN_BACKGROUND, anomaly.uid,
                     anomaly.packageName,
                     AppOpsManager.MODE_IGNORED);
-        }
+        //}
     }
 
     @Override

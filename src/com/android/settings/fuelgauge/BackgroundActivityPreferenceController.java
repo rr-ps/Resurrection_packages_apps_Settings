@@ -92,7 +92,8 @@ public class BackgroundActivityPreferenceController extends AbstractPreferenceCo
             }
         }
 
-        return false;
+        if( mTargetPackage == null ) mTargetPackage = mPackages[0];
+        return true;
     }
 
     @Override
