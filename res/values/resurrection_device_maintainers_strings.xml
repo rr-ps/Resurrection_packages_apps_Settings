@@ -137,7 +137,7 @@
 
   <string name="device_merlin" translatable="false">Moto G Turbo Edition</string>
   <string name="device_merlin_codename" translatable="false">Merlin</string>
-  <string name="device_merlin_maintainer" translatable="false">Abhinai Sanka</string>
+  <string name="device_merlin_maintainer" translatable="false">Hritik Utekar</string>
 
   <string name="device_condor" translatable="false">Moto E</string>
   <string name="device_condor_codename" translatable="false">Condor</string>
@@ -679,10 +679,6 @@
   <string name="device_maguro_codename" translatable="false">Maguro</string>
   <string name="device_maguro_maintainer" translatable="false"></string>
 
-  <string name="device_garlic" translatable="false">Yu Yureka Black</string>
-  <string name="device_garlic_codename" translatable="false">Garlic</string>
-  <string name="device_garlic_maintainer" translatable="false">Vjs Pranav</string>
-
   <string name="device_tomato" translatable="false">Yu Yureka</string>
   <string name="device_tomato_codename" translatable="false">Tomato</string>
   <string name="device_tomato_maintainer" translatable="false">Sanchit Rohilla</string>
@@ -698,6 +694,10 @@
   <string name="device_sambar" translatable="false">Yu Yutopia</string>
   <string name="device_sambar_codename" translatable="false">Sambar</string>
   <string name="device_sambar_maintainer" translatable="false">Darshan M. (darshan1205)</string>
+
+  <string name="device_garlic" translatable="false">Yu Yureka Black</string>
+  <string name="device_garlic_codename" translatable="false">Garlic</string>
+  <string name="device_garlic_maintainer" translatable="false">Vjs Pranav</string>
 
   <string name="device_armani" translatable="false">Xiaomi Redmi 1S </string>
   <string name="device_armani_codename" translatable="false">Armani</string>
@@ -901,11 +901,11 @@
 
   <string name="device_z00t" translatable="false">Asus Zenfone 2 Laser/Selfie (1080p)</string>
   <string name="device_z00t_codename" translatable="false">Z00T</string>
-  <string name="device_z00t_maintainer" translatable="false">Fabb2303</string>
+  <string name="device_z00t_maintainer" translatable="false">suhailit, theimpulson</string>
 
   <string name="device_z00l" translatable="false">Asus Zenfone 2 Laser (720p)</string>
   <string name="device_z00l_codename" translatable="false">Z00L</string>
-  <string name="device_z00l_maintainer" translatable="false">Fabb2303</string>
+  <string name="device_z00l_maintainer" translatable="false">suhailit, theimpulson</string>
 
   <string name="device_n5100" translatable="false">Note 8.0 3g</string>
   <string name="device_n5100_codename" translatable="false">n5100</string>
