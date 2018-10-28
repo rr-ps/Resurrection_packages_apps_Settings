@@ -51,10 +51,14 @@ import com.android.settings.SettingsPreferenceFragment;
 
 import com.android.settings.R;
 
+import android.util.Log;
+
 public class SystemappRemover extends SettingsPreferenceFragment {
     private final int STARTUP_DIALOG = 1;
     private final int DELETE_DIALOG = 2;
     private final int DELETE_MULTIPLE_DIALOG = 3;
+
+    private final String TAG = "SystemappRemover";
 
     protected ArrayAdapter<String> adapter;
     private ArrayList<String> mSysApp;
@@ -109,9 +113,9 @@ public class SystemappRemover extends SettingsPreferenceFragment {
         safetyList.add("SettingsProvider.apk");
         safetyList.add("SystemUI.apk");
         safetyList.add("TeleService.apk");
-        safetyList.add("ResurrectionStats.apk");
-        safetyList.add("OmniJaws.apk");
-        safetyList.add("ResurrectionOTA.apk");
+        //safetyList.add("ResurrectionStats.apk");
+        //safetyList.add("OmniJaws.apk");
+        //safetyList.add("ResurrectionOTA.apk");
 
        // create arraylist from /system/app and /system/priv-app content
         File system = new File(systemPath);
@@ -403,10 +407,13 @@ private String[] combine(String[] a, String[] b) {
     // mount /system as ro on close
     protected void onStop(Bundle savedInstanceState) throws IOException {
         try {
-           dos.writeBytes("\n" + "mount -o remount,ro /system" + "\n");
+            if( dos != null ) {
+              dos.writeBytes("\n" + "mount -o remount,ro /system" + "\n");
               dos.writeBytes("\n" + "exit" + "\n");
               dos.flush();
               dos.close();
+              dos = null;
+            }
           } catch (Exception e) {
             e.printStackTrace();
         }
@@ -428,6 +435,9 @@ private String[] combine(String[] a, String[] b) {
                     e.printStackTrace();
                 }
             }
+
+            Log.w(TAG, "onPreExecute: remounted system");
+
             progress = new ProgressDialog(getView().getContext());
             progress.setTitle(getString(R.string.delete_progress_title));
             progress.setMessage(getString(R.string.delete_progress));
@@ -435,15 +445,21 @@ private String[] combine(String[] a, String[] b) {
         }
 
         protected Void doInBackground(String... params) {
-            for (String appName : params) {
-      		String odexAppName = appName.replaceAll(".apk$", ".odex");
-                String basePath = systemPath;
-                 File app = new File(systemPath);
+            Log.w(TAG, "doInBackground: enter");
 
-                if( ! app.exists() )
+            for (String appName : params) {
+
+                Log.w(TAG, "doInBackground: remove=" + appName);
+
+      		    String odexAppName = appName.replaceAll(".apk$", ".odex");
+                String basePath = systemPath;
+                File app = new File(systemPath + appName);
+
+                if( !app.exists() )
                     basePath = systemPrivPath;
 
                 try {
+                Log.w(TAG, "doInBackground: basePath=" + basePath);
                     dos.writeBytes("\n" + "rm -rf '" + basePath + "*" + appName + "'\n");
                     // needed in case user is using odexed ROM
                     File odex = new File(basePath + odexAppName);
@@ -453,6 +469,7 @@ private String[] combine(String[] a, String[] b) {
                     e.printStackTrace();
                 }
             }
+            Log.w(TAG, "doInBackground: exit");
             return null;
         }
 
